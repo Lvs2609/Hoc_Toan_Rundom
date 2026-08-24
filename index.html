@@ -476,6 +476,7 @@
             box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
         }
 
+        #answerInput.input-error,
         .compare-input.input-error {
             border-color: var(--red);
             background: #fff7f7;
@@ -1817,7 +1818,7 @@
                             <span class="operator" id="calcOp">+</span>
                             <span class="number" id="calcB">3</span>
                             <span class="equals">=</span>
-                            <input id="answerInput" type="text" inputmode="numeric" maxlength="3"
+                            <input id="answerInput" type="text" inputmode="none" readonly maxlength="3"
                                 aria-label="Ô nhập đáp án" autocomplete="off" />
                         </div>
                     </div>
@@ -1860,7 +1861,7 @@
 
                 <div class="compare-question" id="compareQuestion">
                     <span class="compare-number" id="compareA">5</span>
-                    <input id="compareInput" class="compare-input" type="text" maxlength="1" inputmode="text"
+                    <input id="compareInput" class="compare-input" type="text" maxlength="1" inputmode="none" readonly
                         aria-label="Ô nhập dấu so sánh" autocomplete="off" />
                     <span class="compare-number" id="compareB">8</span>
                 </div>
@@ -2461,9 +2462,9 @@
             $('calcOp').textContent = op;
             $('calcB').textContent = b;
             $('answerInput').value = '';
+            $('answerInput').classList.remove('input-error');
             $('calculationFeedback').className = 'feedback';
             $('calculationFeedback').textContent = '';
-            $('answerInput').focus();
         }
 
         function checkCalculation() {
@@ -2497,10 +2498,11 @@
                 state.wrong += 1;
                 state.streak = 0;
                 saveWrongProblem(problem, raw);
+                $('answerInput').classList.add('input-error');
+                $('answerInput').value = '';
                 $('calculationFeedback').className = 'feedback error';
                 $('calculationFeedback').innerHTML = '<span class="error-x">✕</span>Sai rồi, thử lại nhé!';
                 updateStats();
-                $('answerInput').select();
             }
         }
 
@@ -2560,7 +2562,6 @@
             $('compareFeedback').className = 'feedback';
             $('compareFeedback').textContent = '';
             document.querySelectorAll('.compare-btn').forEach(btn => btn.classList.remove('correct', 'wrong'));
-            $('compareInput').focus();
         }
 
         function checkCompare(value) {
@@ -2586,6 +2587,7 @@
                 state.streak = 0;
                 saveWrongProblem(problem, value);
                 $('compareInput').classList.add('input-error');
+                $('compareInput').value = '';
                 $('compareFeedback').className = 'feedback error';
                 $('compareFeedback').innerHTML = '<span class="error-x">✕</span>Sai rồi, thử lại nhé!';
                 updateStats();
@@ -2772,6 +2774,26 @@
         };
 
         $('numpadContainer').addEventListener('pointerdown', handleNumpadPress);
+
+        document.addEventListener('keydown', (event) => {
+            if ($('configModal').classList.contains('show') || $('settingsModal').classList.contains('show')) return;
+            if (state.mode !== 'calculation') return;
+
+            const input = $('answerInput');
+            if (!input || input.disabled) return;
+
+            if (event.key >= '0' && event.key <= '9') {
+                input.classList.remove('input-error');
+                if (input.value.length < 3) {
+                    input.value += event.key;
+                }
+            } else if (event.key === 'Backspace') {
+                input.classList.remove('input-error');
+                input.value = input.value.slice(0, -1);
+            } else if (event.key === 'Enter') {
+                checkCalculation();
+            }
+        });
 
         loadWrongProblems();
         loadConfig();
