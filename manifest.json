@@ -1,0 +1,24 @@
+{
+  "name": "Math Kids - Học Toán",
+  "short_name": "Math Kids",
+  "description": "Luyện cộng, trừ, nhân, chia và so sánh số cho trẻ em",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#6bb5ff",
+  "theme_color": "#4f46e5",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
