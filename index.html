@@ -1056,8 +1056,9 @@
         }
 
         .settings-modal {
-            max-height: min(88vh, 760px);
-            overflow: auto;
+            max-height: min(90vh, 820px);
+            overflow-y: auto;
+            border-radius: 24px;
         }
 
         .settings-header {
@@ -1065,36 +1066,140 @@
             justify-content: space-between;
             gap: 16px;
             align-items: flex-start;
+            margin-bottom: 14px;
         }
 
         .settings-header h3 {
-            margin: 0 0 6px;
+            margin: 0 0 4px;
+            font-size: 22px;
+            font-family: 'Fredoka', 'Nunito', sans-serif;
+            color: #1e1b4b;
         }
 
         .settings-header p {
             margin: 0;
             color: var(--muted);
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 13.5px;
+            line-height: 1.4;
         }
 
         .icon-close-btn {
             border: 0;
-            background: #f3f4f6;
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            font-size: 18px;
+            background: #f1f5f9;
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 800;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .icon-close-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .preset-section {
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .preset-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px 12px;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            text-align: left;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+        }
+
+        .preset-btn:hover {
+            border-color: #8b5cf6;
+            background: #f5f3ff;
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+        }
+
+        .preset-icon {
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+
+        .preset-title {
+            font-weight: 800;
+            font-size: 13px;
+            color: #1e1b4b;
+        }
+
+        .preset-sub {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+
+        .settings-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 14px 0;
         }
 
         .settings-section {
-            margin-top: 18px;
+            margin-top: 14px;
         }
 
         .settings-label {
             font-weight: 800;
-            margin-bottom: 9px;
+            font-size: 14px;
+            color: #1e293b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mode-tab-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            background: #f1f5f9;
+            padding: 5px;
+            border-radius: 16px;
+        }
+
+        .mode-tab-btn {
+            border: 0;
+            padding: 11px 12px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 13.5px;
+            background: transparent;
+            color: #64748b;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .mode-tab-btn.active {
+            background: #ffffff;
+            color: #4f46e5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .settings-grid {
@@ -1102,7 +1207,11 @@
             gap: 8px;
         }
 
-        .settings-grid.two-cols {
+        .settings-grid.four-cols {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .settings-grid.range-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -1111,37 +1220,94 @@
         }
 
         .settings-choice {
-            min-height: 44px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
             background: #f8fafc;
             font-weight: 800;
-            padding: 10px;
+            font-size: 13.5px;
+            padding: 9px 10px;
             color: #334155;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            text-align: center;
         }
 
         .settings-choice.active {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-            box-shadow: 0 6px 12px rgba(79, 70, 229, .18);
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            color: #ffffff;
+            border-color: #4338ca;
+            box-shadow: 0 6px 14px rgba(79, 70, 229, 0.28);
         }
 
-        .settings-hint {
-            margin: 8px 0 0;
-            color: var(--muted);
+        .choice-sub {
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.85;
+            margin-top: 2px;
+            display: block;
+        }
+
+        .ratio-sub-panel {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 10px 12px;
+            margin-top: 8px;
+        }
+
+        .table-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .table-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 800;
+            font-size: 13.5px;
+            color: #1e293b;
+        }
+
+        .table-toggle-btn {
+            border: 1.5px solid #cbd5e1;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #64748b;
+            font-weight: 800;
             font-size: 12px;
-            line-height: 1.6;
+            padding: 4px 12px;
+            cursor: pointer;
+            transition: all 0.15s ease;
         }
 
-        .settings-summary {
-            margin-top: 18px;
-            padding: 11px 13px;
-            border-radius: 12px;
-            background: #ecfdf5;
+        .table-toggle-btn.active {
+            background: #dcfce7;
+            color: #15803d;
+            border-color: #86efac;
+            box-shadow: 0 2px 6px rgba(21, 128, 61, 0.12);
+        }
+
+        .settings-summary-card {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: #f0fdf4;
+            border: 1.5px solid #bbf7d0;
             color: #166534;
             font-size: 13px;
-            line-height: 1.6;
+            line-height: 1.55;
+            font-weight: 700;
         }
 
         @media (max-width:600px) {
@@ -1156,12 +1322,20 @@
                 text-align: center;
             }
 
-            .settings-grid.five-cols {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+            .preset-grid {
+                grid-template-columns: 1fr;
             }
 
-            .settings-grid.two-cols {
+            .settings-grid.four-cols {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .settings-grid.range-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid.five-cols {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
         }
 
@@ -1928,100 +2102,166 @@
             <div class="settings-header">
                 <div>
                     <h3 id="settingsModalTitle">⚙️ Cấu hình bài học</h3>
-                    <p>Các lựa chọn bên dưới chỉ xuất hiện sau khi nhập đúng mật khẩu.</p>
+                    <p>Chọn nhanh cấu hình gợi ý hoặc tùy chỉnh chi tiết theo nhu cầu học của bé</p>
                 </div>
                 <button id="closeSettingsBtn" class="icon-close-btn" type="button" aria-label="Đóng">✕</button>
             </div>
 
+            <!-- Quick Presets Section -->
+            <div class="preset-section">
+                <div class="settings-label">⚡ Cấu hình nhanh theo độ tuổi</div>
+                <div class="preset-grid">
+                    <button class="preset-btn" data-preset="grade1-single" type="button">
+                        <span class="preset-icon">🎈</span>
+                        <span class="preset-title">Lớp 1 (Cơ bản)</span>
+                        <span class="preset-sub">Cộng / Trừ 1 chữ số (1–9)</span>
+                    </button>
+                    <button class="preset-btn" data-preset="grade1-double" type="button">
+                        <span class="preset-icon">📘</span>
+                        <span class="preset-title">Lớp 1–2 (Nâng cao)</span>
+                        <span class="preset-sub">Cộng / Trừ 2 chữ số</span>
+                    </button>
+                    <button class="preset-btn" data-preset="multiplication-tables" type="button">
+                        <span class="preset-icon">✖️</span>
+                        <span class="preset-title">Bảng cửu chương</span>
+                        <span class="preset-sub">Luyện nhân &amp; chia theo bảng</span>
+                    </button>
+                    <button class="preset-btn" data-preset="compare-numbers" type="button">
+                        <span class="preset-icon">🔎</span>
+                        <span class="preset-title">Luyện so sánh</span>
+                        <span class="preset-sub">Điền dấu &gt;, &lt;, =</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="settings-divider"></div>
+
+            <!-- Mode Tabs -->
             <div class="settings-section">
-                <div class="settings-label">Chế độ học</div>
-                <div class="settings-grid two-cols">
-                    <button class="settings-choice active" data-mode-setting="calculation" type="button">🧮 Phép
-                        tính</button>
-                    <button class="settings-choice" data-mode-setting="compare" type="button">🔎 So sánh 2 số</button>
+                <div class="settings-label">Chế độ bài học chính</div>
+                <div class="mode-tab-grid">
+                    <button class="mode-tab-btn active" data-mode-setting="calculation" type="button">
+                        🧮 Phép tính (Cộng, Trừ, Nhân, Chia)
+                    </button>
+                    <button class="mode-tab-btn" data-mode-setting="compare" type="button">
+                        🔎 So sánh 2 số (&gt;, &lt;, =)
+                    </button>
                 </div>
             </div>
 
-            <div class="settings-section" id="settingsOperationSection">
-                <div class="settings-label">Phép tính được phép học</div>
-                <div class="settings-grid two-cols">
-                    <button class="settings-choice active" data-op-setting="+" type="button">➕ Cộng</button>
-                    <button class="settings-choice active" data-op-setting="-" type="button">➖ Trừ</button>
-                    <button class="settings-choice active" data-op-setting="×" type="button">✖️ Nhân</button>
-                    <button class="settings-choice active" data-op-setting="÷" type="button">➗ Chia</button>
-                </div>
-                <p class="settings-hint">Có thể bật/tắt từng phép tính, kể cả tắt cả 4 phép. Hai nút “Áp dụng bảng
-                    Nhân/Chia” bên dưới hoạt động độc lập: bật nút nào thì phép đó được học theo bảng đã chọn, không phụ
-                    thuộc nút Nhân/Chia phía trên.</p>
-            </div>
-
-            <div class="settings-section" id="settingsRatioSection">
-                <div class="settings-label">Tỷ lệ cộng/trừ 2 chữ số với nhau</div>
-                <div class="settings-grid five-cols">
-                    <button class="settings-choice" data-ratio-setting="0" type="button">0%</button>
-                    <button class="settings-choice" data-ratio-setting="25" type="button">25%</button>
-                    <button class="settings-choice active" data-ratio-setting="50" type="button">50%</button>
-                    <button class="settings-choice" data-ratio-setting="75" type="button">75%</button>
-                    <button class="settings-choice" data-ratio-setting="100" type="button">100%</button>
-                </div>
-            </div>
-
-            <div class="settings-section" id="settingsTableSection">
-                <div class="settings-label">Bảng cửu chương Nhân &amp; Chia</div>
-                <div class="table-select-grid">
-                    <div class="table-select-box">
-                        <label for="multiplicationTableSelect">✖️ Bảng Nhân</label>
-                        <select id="multiplicationTableSelect" class="table-select">
-                            <option value="2">Bảng 2</option>
-                            <option value="3">Bảng 3</option>
-                            <option value="4">Bảng 4</option>
-                            <option value="5">Bảng 5</option>
-                            <option value="6">Bảng 6</option>
-                            <option value="7">Bảng 7</option>
-                            <option value="8">Bảng 8</option>
-                            <option value="9">Bảng 9</option>
-                        </select>
-                        <button id="applyMultiplicationTableBtn" class="table-apply-btn" type="button">🔘 Áp dụng bảng
-                            Nhân</button>
-                    </div>
-                    <div class="table-select-box">
-                        <label for="divisionTableSelect">➗ Bảng Chia</label>
-                        <select id="divisionTableSelect" class="table-select">
-                            <option value="2">Bảng 2</option>
-                            <option value="3">Bảng 3</option>
-                            <option value="4">Bảng 4</option>
-                            <option value="5">Bảng 5</option>
-                            <option value="6">Bảng 6</option>
-                            <option value="7">Bảng 7</option>
-                            <option value="8">Bảng 8</option>
-                            <option value="9">Bảng 9</option>
-                        </select>
-                        <button id="applyDivisionTableBtn" class="table-apply-btn" type="button">🔘 Áp dụng bảng
-                            Chia</button>
+            <!-- Calculation Settings Container -->
+            <div id="settingsCalcContainer">
+                <div class="settings-section" id="settingsOperationSection">
+                    <div class="settings-label">Các phép tính được phép học</div>
+                    <div class="settings-grid four-cols">
+                        <button class="settings-choice active" data-op-setting="+" type="button">➕ Cộng</button>
+                        <button class="settings-choice active" data-op-setting="-" type="button">➖ Trừ</button>
+                        <button class="settings-choice active" data-op-setting="×" type="button">✖️ Nhân</button>
+                        <button class="settings-choice active" data-op-setting="÷" type="button">➗ Chia</button>
                     </div>
                 </div>
-                <p class="settings-hint">Hai bảng luôn có thể chọn độc lập. Khi bật “Áp dụng”, phép Nhân/Chia tương ứng
-                    sẽ được học theo bảng đã chọn, kể cả khi nút Nhân/Chia phía trên đang tắt.</p>
-            </div>
 
-            <div class="settings-section" id="settingsCompareSection">
-                <div class="settings-label">Dạng so sánh</div>
-                <div class="settings-grid three-cols">
-                    <button class="settings-choice active" data-compare-setting="1-1" type="button">1 chữ số vs 1 chữ
-                        số</button>
-                    <button class="settings-choice" data-compare-setting="2-2" type="button">2 chữ số vs 2 chữ
-                        số</button>
-                    <button class="settings-choice" data-compare-setting="all" type="button">🔀 Tất cả 4 trường
-                        hợp</button>
+                <div class="settings-section" id="settingsAddSubRangeSection">
+                    <div class="settings-label">Phạm vi Phép Cộng &amp; Trừ</div>
+                    <div class="settings-grid range-grid">
+                        <button class="settings-choice active" data-range-setting="1-1" type="button">
+                            ✨ 1 chữ số (1–9)
+                            <span class="choice-sub">VD: 5 + 3, 9 - 4</span>
+                        </button>
+                        <button class="settings-choice" data-range-setting="2-1" type="button">
+                            2 chữ số &amp; 1 chữ số
+                            <span class="choice-sub">VD: 25 + 4, 38 - 5</span>
+                        </button>
+                        <button class="settings-choice" data-range-setting="2-2" type="button">
+                            2 chữ số &amp; 2 chữ số
+                            <span class="choice-sub">VD: 24 + 35, 87 - 42</span>
+                        </button>
+                        <button class="settings-choice" data-range-setting="mixed" type="button">
+                            🔀 Hỗn hợp (% 2 chữ số)
+                            <span class="choice-sub">Tùy chỉnh tỷ lệ 2 chữ số</span>
+                        </button>
+                    </div>
+
+                    <div class="ratio-sub-panel hidden" id="ratioSubPanel">
+                        <div class="settings-label" style="font-size: 12.5px; margin-bottom: 6px;">Tỷ lệ xuất hiện số có 2 chữ số:</div>
+                        <div class="settings-grid five-cols">
+                            <button class="settings-choice" data-ratio-setting="0" type="button">0%</button>
+                            <button class="settings-choice" data-ratio-setting="25" type="button">25%</button>
+                            <button class="settings-choice active" data-ratio-setting="50" type="button">50%</button>
+                            <button class="settings-choice" data-ratio-setting="75" type="button">75%</button>
+                            <button class="settings-choice" data-ratio-setting="100" type="button">100%</button>
+                        </div>
+                    </div>
                 </div>
-                <p class="settings-hint">“Tất cả 4 trường hợp” gồm 1 vs 1, 1 vs 2, 2 vs 1 và 2 vs 2. Với 1 vs 1 và 2 vs
-                    2, dấu “=” cũng được tạo để bé luyện đủ 3 trường hợp.</p>
+
+                <div class="settings-section" id="settingsTableSection">
+                    <div class="settings-label">Bảng cửu chương (Nhân &amp; Chia)</div>
+                    <div class="table-select-grid">
+                        <div class="table-card">
+                            <div class="table-card-header">
+                                <span>✖️ Bảng Nhân</span>
+                                <button id="applyMultiplicationTableBtn" class="table-toggle-btn" type="button">🔘 Tắt</button>
+                            </div>
+                            <div class="table-select-box">
+                                <label for="multiplicationTableSelect">Chọn bảng cửu chương:</label>
+                                <select id="multiplicationTableSelect" class="table-select">
+                                    <option value="2">Bảng 2</option>
+                                    <option value="3">Bảng 3</option>
+                                    <option value="4">Bảng 4</option>
+                                    <option value="5">Bảng 5</option>
+                                    <option value="6">Bảng 6</option>
+                                    <option value="7">Bảng 7</option>
+                                    <option value="8">Bảng 8</option>
+                                    <option value="9">Bảng 9</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-card">
+                            <div class="table-card-header">
+                                <span>➗ Bảng Chia</span>
+                                <button id="applyDivisionTableBtn" class="table-toggle-btn" type="button">🔘 Tắt</button>
+                            </div>
+                            <div class="table-select-box">
+                                <label for="divisionTableSelect">Chọn bảng cửu chương:</label>
+                                <select id="divisionTableSelect" class="table-select">
+                                    <option value="2">Bảng 2</option>
+                                    <option value="3">Bảng 3</option>
+                                    <option value="4">Bảng 4</option>
+                                    <option value="5">Bảng 5</option>
+                                    <option value="6">Bảng 6</option>
+                                    <option value="7">Bảng 7</option>
+                                    <option value="8">Bảng 8</option>
+                                    <option value="9">Bảng 9</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="settings-summary" id="settingsSummary"></div>
+            <!-- Compare Settings Container -->
+            <div class="settings-section hidden" id="settingsCompareSection">
+                <div class="settings-label">Dạng bài tập so sánh</div>
+                <div class="settings-grid range-grid">
+                    <button class="settings-choice active" data-compare-setting="1-1" type="button">
+                        1 chữ số (1–9)
+                        <span class="choice-sub">VD: 5 &lt; 8</span>
+                    </button>
+                    <button class="settings-choice" data-compare-setting="2-2" type="button">
+                        2 chữ số (10–99)
+                        <span class="choice-sub">VD: 45 &gt; 32</span>
+                    </button>
+                    <button class="settings-choice" data-compare-setting="all" type="button">
+                        🔀 Tất cả 4 trường hợp
+                        <span class="choice-sub">1 vs 1, 1 vs 2, 2 vs 1, 2 vs 2</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="settings-summary-card" id="settingsSummary"></div>
             <div class="modal-actions">
                 <button id="closeSettingsBtn2" class="secondary-btn" type="button">Đóng</button>
-                <button id="lockFromSettingsBtn" class="primary-btn" type="button">🔒 Lưu & khóa cấu hình</button>
+                <button id="lockFromSettingsBtn" class="primary-btn" type="button">🔒 Lưu &amp; khóa cấu hình</button>
             </div>
         </div>
     </div>
@@ -2044,6 +2284,7 @@
         const state = {
             mode: 'calculation',
             selectedOps: new Set(['+', '-', '×', '÷']),
+            addSubRange: '1-1',
             calculation: null,
             compare: null,
             compareType: '1-1',
@@ -2187,6 +2428,7 @@
             localStorage.setItem('mathKidsConfig', JSON.stringify({
                 mode: state.mode,
                 selectedOps: [...state.selectedOps],
+                addSubRange: state.addSubRange,
                 compareType: state.compareType,
                 twoDigitRatio: state.twoDigitRatio,
                 multiplicationTable: state.multiplicationTable,
@@ -2244,6 +2486,11 @@
                     if (validOps.length) state.selectedOps = new Set(validOps);
                 }
                 if (saved && ['calculation', 'compare'].includes(saved.mode)) state.mode = saved.mode;
+                if (saved && ['1-1', '2-1', '2-2', 'mixed'].includes(saved.addSubRange)) {
+                    state.addSubRange = saved.addSubRange;
+                } else if (saved && typeof saved.twoDigitRatio === 'number') {
+                    state.addSubRange = saved.twoDigitRatio === 0 ? '1-1' : 'mixed';
+                }
                 if (saved && ['1-1', '2-2', 'all'].includes(saved.compareType)) state.compareType = saved.compareType;
                 if (saved && [0, 25, 50, 75, 100].includes(Number(saved.twoDigitRatio))) state.twoDigitRatio = Number(saved.twoDigitRatio);
                 if (saved && [2, 3, 4, 5, 6, 7, 8, 9].includes(Number(saved.multiplicationTable))) state.multiplicationTable = Number(saved.multiplicationTable);
@@ -2273,35 +2520,89 @@
         function updateLearningModeDisplay() {
             const badge = $('currentModeBadge');
             if (!badge) return;
-            badge.textContent = state.mode === 'compare'
-                ? `🔎 So sánh 2 số • ${state.compareType === 'all' ? 'Tất cả 4 trường hợp' : (state.compareType === '1-1' ? '1 chữ số vs 1 chữ số' : '2 chữ số vs 2 chữ số')}`
-                : '🧮 Phép tính';
+            if (state.mode === 'compare') {
+                const cmpText = state.compareType === 'all' ? 'Tất cả 4 trường hợp' : (state.compareType === '1-1' ? '1 chữ số vs 1 chữ số' : '2 chữ số vs 2 chữ số');
+                badge.textContent = `🔎 So sánh 2 số • ${cmpText}`;
+            } else {
+                let rangeText = '1 chữ số (1–9)';
+                if (state.addSubRange === '2-1') rangeText = '2 chữ số & 1 chữ số';
+                if (state.addSubRange === '2-2') rangeText = '2 chữ số & 2 chữ số';
+                if (state.addSubRange === 'mixed') rangeText = `Hỗn hợp (${state.twoDigitRatio}% 2 chữ số)`;
+                badge.textContent = `🧮 Phép tính • Cộng/Trừ ${rangeText}`;
+            }
+        }
+
+        function applyPreset(presetName) {
+            if (!state.configUnlocked) return;
+            if (presetName === 'grade1-single') {
+                state.mode = 'calculation';
+                state.selectedOps = new Set(['+', '-']);
+                state.addSubRange = '1-1';
+                state.applyMultiplicationTable = false;
+                state.applyDivisionTable = false;
+            } else if (presetName === 'grade1-double') {
+                state.mode = 'calculation';
+                state.selectedOps = new Set(['+', '-']);
+                state.addSubRange = '2-2';
+                state.applyMultiplicationTable = false;
+                state.applyDivisionTable = false;
+            } else if (presetName === 'multiplication-tables') {
+                state.mode = 'calculation';
+                state.selectedOps = new Set(['×', '÷']);
+                state.applyMultiplicationTable = true;
+                state.applyDivisionTable = true;
+            } else if (presetName === 'compare-numbers') {
+                state.mode = 'compare';
+                state.compareType = '1-1';
+            }
+            state.operationQueue = [];
+            updateSettingsUI();
+            switchMode(state.mode);
         }
 
         function updateSettingsUI() {
             document.querySelectorAll('[data-mode-setting]').forEach(btn => btn.classList.toggle('active', btn.dataset.modeSetting === state.mode));
             document.querySelectorAll('[data-op-setting]').forEach(btn => btn.classList.toggle('active', state.selectedOps.has(btn.dataset.opSetting)));
+            document.querySelectorAll('[data-range-setting]').forEach(btn => btn.classList.toggle('active', btn.dataset.rangeSetting === state.addSubRange));
             document.querySelectorAll('[data-ratio-setting]').forEach(btn => btn.classList.toggle('active', btn.dataset.ratioSetting === String(state.twoDigitRatio)));
             document.querySelectorAll('[data-compare-setting]').forEach(btn => btn.classList.toggle('active', btn.dataset.compareSetting === state.compareType));
-            $('settingsOperationSection').classList.toggle('hidden', state.mode !== 'calculation');
-            $('settingsRatioSection').classList.toggle('hidden', state.mode !== 'calculation');
-            // Bảng cửu chương luôn hiển thị để người quản lý có thể chọn độc lập với 4 nút phép tính.
-            $('settingsCompareSection').classList.toggle('hidden', state.mode !== 'compare');
+
+            const isCalc = state.mode === 'calculation';
+            $('settingsCalcContainer').classList.toggle('hidden', !isCalc);
+            $('settingsCompareSection').classList.toggle('hidden', !isCalc === false && state.mode !== 'compare');
+
+            const isMixed = isCalc && state.addSubRange === 'mixed';
+            $('ratioSubPanel').classList.toggle('hidden', !isMixed);
+
             $('multiplicationTableSelect').value = String(state.multiplicationTable);
             $('divisionTableSelect').value = String(state.divisionTable);
-            // Hai bảng cửu chương luôn có thể chọn và áp dụng độc lập với 4 nút Cộng/Trừ/Nhân/Chia.
-            $('multiplicationTableSelect').disabled = false;
-            $('divisionTableSelect').disabled = false;
-            $('applyMultiplicationTableBtn').disabled = false;
-            $('applyDivisionTableBtn').disabled = false;
             $('applyMultiplicationTableBtn').classList.toggle('active', state.applyMultiplicationTable);
             $('applyDivisionTableBtn').classList.toggle('active', state.applyDivisionTable);
-            $('applyMultiplicationTableBtn').textContent = state.applyMultiplicationTable ? '✅ Đang áp dụng bảng Nhân' : '🔘 Áp dụng bảng Nhân';
-            $('applyDivisionTableBtn').textContent = state.applyDivisionTable ? '✅ Đang áp dụng bảng Chia' : '🔘 Áp dụng bảng Chia';
-            const ops = [...state.selectedOps].map(op => ({ '+': 'Cộng', '-': 'Trừ', '×': 'Nhân', '÷': 'Chia' }[op])).join(', ');
-            $('settingsSummary').textContent = state.mode === 'compare'
-                ? `Đang chọn: So sánh 2 số • ${state.compareType === 'all' ? 'Tất cả 4 trường hợp' : (state.compareType === '1-1' ? '1 chữ số vs 1 chữ số' : '2 chữ số vs 2 chữ số')} • Bảng Nhân: ${state.applyMultiplicationTable ? 'Áp dụng bảng ' + state.multiplicationTable : 'không áp dụng'} • Bảng Chia: ${state.applyDivisionTable ? 'Áp dụng bảng ' + state.divisionTable : 'không áp dụng'}.`
-                : `Đang chọn: Phép tính • ${ops || 'Chưa chọn phép tính'} • Tỷ lệ 2 chữ số: ${state.twoDigitRatio}% • Bảng Nhân: ${state.applyMultiplicationTable ? 'Áp dụng bảng ' + state.multiplicationTable : 'toàn bộ 1–9'} • Bảng Chia: ${state.applyDivisionTable ? 'Áp dụng bảng ' + state.divisionTable : 'toàn bộ 1–9'}.`;
+            $('applyMultiplicationTableBtn').textContent = state.applyMultiplicationTable ? '✅ Bật bảng ' + state.multiplicationTable : '🔘 Tắt';
+            $('applyDivisionTableBtn').textContent = state.applyDivisionTable ? '✅ Bật bảng ' + state.divisionTable : '🔘 Tắt';
+
+            const opsText = [...state.selectedOps].map(op => ({ '+': 'Cộng', '-': 'Trừ', '×': 'Nhân', '÷': 'Chia' }[op])).join(', ');
+            let rangeLabel = '1 chữ số (1–9)';
+            if (state.addSubRange === '2-1') rangeLabel = '2 chữ số & 1 chữ số';
+            if (state.addSubRange === '2-2') rangeLabel = '2 chữ số & 2 chữ số';
+            if (state.addSubRange === 'mixed') rangeLabel = `Hỗn hợp (${state.twoDigitRatio}% 2 chữ số)`;
+
+            if (state.mode === 'compare') {
+                const cmpText = state.compareType === 'all' ? 'Tất cả 4 trường hợp' : (state.compareType === '1-1' ? '1 chữ số vs 1 chữ số' : '2 chữ số vs 2 chữ số');
+                $('settingsSummary').innerHTML = `📌 <b>Cấu hình hiện tại:</b> Chế độ So sánh 2 số (${cmpText}).`;
+            } else {
+                let text = `📌 <b>Cấu hình hiện tại:</b> Phép tính (${opsText || 'Chưa chọn phép tính'})`;
+                if (state.selectedOps.has('+') || state.selectedOps.has('-')) {
+                    text += ` • Cộng/Trừ: <b>${rangeLabel}</b>`;
+                }
+                if (state.applyMultiplicationTable) {
+                    text += ` • <b>Bảng Nhân ${state.multiplicationTable}</b>`;
+                }
+                if (state.applyDivisionTable) {
+                    text += ` • <b>Bảng Chia ${state.divisionTable}</b>`;
+                }
+                $('settingsSummary').innerHTML = text;
+            }
         }
 
         function openSettingsModal() {
@@ -2317,13 +2618,23 @@
             $('configStatusText').textContent = unlocked
                 ? 'Đang mở cấu hình. Chọn xong hãy bấm “Lưu & khóa cấu hình”.'
                 : 'Đã khóa cấu hình. Bé chỉ được học theo các chức năng đã cài đặt.';
-            const ops = [...state.selectedOps].map(op => ({ '+': 'Cộng', '-': 'Trừ', '×': 'Nhân', '÷': 'Chia' }[op])).join(', ');
+
             const effectiveOps = getEffectiveCalculationOps().map(op => ({ '+': 'Cộng', '-': 'Trừ', '×': 'Nhân', '÷': 'Chia' }[op])).join(', ');
-            const modeText = state.mode === 'compare' ? `So sánh (${state.compareType === 'all' ? 'Tất cả 4 trường hợp' : (state.compareType === '1-1' ? '1 chữ số vs 1 chữ số' : '2 chữ số vs 2 chữ số')})` : 'Phép tính';
-            const tableText = ` • Bảng Nhân: ${state.applyMultiplicationTable ? 'Áp dụng ' + state.multiplicationTable : 'toàn bộ 1–9'} • Bảng Chia: ${state.applyDivisionTable ? 'Áp dụng ' + state.divisionTable : 'toàn bộ 1–9'}`;
-            $('activeConfigNote').textContent = state.mode === 'compare'
-                ? `Cấu hình đang học: ${modeText}.`
-                : `Cấu hình đang học: ${modeText} • Phép được học: ${effectiveOps || 'Chưa chọn phép tính'} • Tỷ lệ 2 chữ số: ${state.twoDigitRatio}%${tableText}.`;
+            let rangeLabel = '1 chữ số (1–9)';
+            if (state.addSubRange === '2-1') rangeLabel = '2 chữ số với 1 chữ số';
+            if (state.addSubRange === '2-2') rangeLabel = '2 chữ số với 2 chữ số';
+            if (state.addSubRange === 'mixed') rangeLabel = `Hỗn hợp (${state.twoDigitRatio}% 2 chữ số)`;
+
+            let noteText = '';
+            if (state.mode === 'compare') {
+                const cmpText = state.compareType === 'all' ? 'Tất cả 4 trường hợp' : (state.compareType === '1-1' ? '1 chữ số vs 1 chữ số' : '2 chữ số vs 2 chữ số');
+                noteText = `Cấu hình đang học: So sánh 2 số (${cmpText}).`;
+            } else {
+                noteText = `Cấu hình đang học: Phép tính (${effectiveOps || 'Chưa chọn phép tính'}) • Phạm vi Cộng/Trừ: ${rangeLabel}`;
+                if (state.applyMultiplicationTable) noteText += ` • Bảng Nhân ${state.multiplicationTable}`;
+                if (state.applyDivisionTable) noteText += ` • Bảng Chia ${state.divisionTable}`;
+            }
+            $('activeConfigNote').textContent = noteText;
             $('activeConfigNote').classList.remove('hidden');
             updateLearningModeDisplay();
         }
@@ -2376,10 +2687,8 @@
             openSettingsModal();
         }
 
-
         function getEffectiveCalculationOps() {
             const ops = new Set(state.selectedOps);
-            // Nút 'Áp dụng bảng' độc lập với 4 nút phép tính: bật là phép đó được phép học.
             if (state.applyMultiplicationTable) ops.add('×');
             if (state.applyDivisionTable) ops.add('÷');
             return [...ops];
@@ -2404,9 +2713,6 @@
             $('checkBtn').disabled = false;
             $('nextBtn').disabled = false;
 
-            // Chọn phép tính theo vòng cân bằng thay vì random hoàn toàn.
-            // Nhờ vậy tỷ lệ không bị lệch nhiều: nếu chọn Cộng + Trừ thì luôn 50/50;
-            // nếu chọn cả 4 phép thì mỗi phép sẽ xuất hiện đều nhau theo từng vòng.
             const selected = [...state.selectedOps];
             if (!state.operationQueue.some(op => ops.includes(op))) {
                 state.operationQueue = [];
@@ -2423,14 +2729,24 @@
             let a, b, answer;
 
             if (op === '+' || op === '-') {
-                const useTwoDigits = Math.random() * 100 < state.twoDigitRatio;
-                a = randomInt(10, 99);
-                b = useTwoDigits ? randomInt(10, 99) : randomInt(1, 9);
+                if (state.addSubRange === '1-1') {
+                    a = randomInt(1, 9);
+                    b = randomInt(1, 9);
+                } else if (state.addSubRange === '2-1') {
+                    a = randomInt(10, 99);
+                    b = randomInt(1, 9);
+                } else if (state.addSubRange === '2-2') {
+                    a = randomInt(10, 99);
+                    b = randomInt(10, 99);
+                } else {
+                    const useTwoDigits = Math.random() * 100 < state.twoDigitRatio;
+                    a = randomInt(10, 99);
+                    b = useTwoDigits ? randomInt(10, 99) : randomInt(1, 9);
+                }
 
                 if (op === '+') {
                     answer = a + b;
                 } else {
-                    // Không cho kết quả âm để trẻ dễ luyện phép trừ.
                     if (b > a) [a, b] = [b, a];
                     answer = a - b;
                 }
@@ -2493,7 +2809,6 @@
                 $('calculationFeedback').textContent = '✓ Chính xác! Sang câu mới nhé!';
                 updateStats();
 
-                // Đúng thì tự động chuyển sang câu mới.
                 setTimeout(() => {
                     if (state.mode === 'calculation' && state.calculation === problem) createCalculation();
                 }, 650);
@@ -2513,7 +2828,6 @@
             let type = state.compareType;
 
             if (type === 'all') {
-                // Random theo từng nhóm 4 câu để bảo đảm đủ cả 4 trường hợp.
                 if (!state.compareAllQueue.length) {
                     state.compareAllQueue = ['1-1', '1-2', '2-1', '2-2'].sort(() => Math.random() - 0.5);
                 }
@@ -2529,7 +2843,6 @@
             let a;
             let b;
 
-            // Với 1-1 / 2-2, thỉnh thoảng tạo bằng nhau để bé luyện dấu "=".
             const canEqual = leftDigits === rightDigits;
             const forceEqual = canEqual && (Math.random() < 0.25 || (state.compareType === 'all' && state.compareAllCounter % 4 === 0));
 
@@ -2606,6 +2919,10 @@
             else createCompare();
         }
 
+        document.querySelectorAll('[data-preset]').forEach(btn => {
+            btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+        });
+
         document.querySelectorAll('[data-mode-setting]').forEach(btn => {
             btn.addEventListener('click', () => {
                 if (!state.configUnlocked) return;
@@ -2622,6 +2939,15 @@
                 if (state.selectedOps.has(op)) state.selectedOps.delete(op);
                 else state.selectedOps.add(op);
                 state.operationQueue = [];
+                updateSettingsUI();
+                createCalculation();
+            });
+        });
+
+        document.querySelectorAll('[data-range-setting]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!state.configUnlocked) return;
+                state.addSubRange = btn.dataset.rangeSetting;
                 updateSettingsUI();
                 createCalculation();
             });
